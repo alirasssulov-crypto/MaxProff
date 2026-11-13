@@ -1,1 +1,46 @@
 @import "tailwindcss";
+
+@theme {
+  --color-brand: #6cac3d;
+  --color-brand-dark: #5a9532;
+  --color-navy: #204872;
+  --color-ink: #171616;
+  --color-soft: #f2f2f2;
+  --font-sans: "Roboto", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --animate-fade-in: fade-in 0.25s ease-out both;
+  --animate-pop: pop 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-ring: ring 2s ease-out infinite;
+  --animate-swap: swap 0.5s ease-out both;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes pop {
+    from { opacity: 0; transform: translateY(16px) scale(0.96); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes ring {
+    0% { box-shadow: 0 0 0 0 rgb(108 172 61 / 0.5); }
+    100% { box-shadow: 0 0 0 14px rgb(108 172 61 / 0); }
+  }
+  @keyframes swap {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+html { scroll-behavior: smooth; }
+body { @apply bg-white font-sans text-ink antialiased; }
+section[id] { scroll-margin-top: 110px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
